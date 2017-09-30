@@ -10,7 +10,7 @@ export class ProductListComponent {
   @Input()
   products: Product[];
 
-  @Output()
+  @Output() 
   addToBasket: EventEmitter<Product> = new EventEmitter();
 
   onAddProductToBasket(product: Product) {

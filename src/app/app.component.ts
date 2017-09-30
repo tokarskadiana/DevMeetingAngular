@@ -12,20 +12,21 @@ import {ProductRepository, ProductRepositoryToken} from "./ProductRepository";
 export class AppComponent implements OnInit {
 
   products:Product[];
-
+  title = 'Rainbow Market';
+  basket:Product[]=[];
+  allProducts:Product[];
   public constructor(private titleService: Title,
                      @Inject(ProductRepositoryToken) productRepository: ProductRepository) {
-    this.products = productRepository.getProducts();
+    this.allProducts = productRepository.getProducts();
   }
 
   public setTitle(newTitle: string) {
     this.titleService.setTitle(newTitle);
   }
-  title = 'Rainbow Market';
-  filteredProducts:Product[];
-  basket:Product[]=[];
+ 
   ngOnInit() {
     this.setTitle( 'Rainbow Market' );
+    this.products = this.allProducts;
   }
 
   onAddProductToBasket(product){
@@ -34,7 +35,7 @@ export class AppComponent implements OnInit {
   }
 
   filterProduct(value:string){
-    this.products = this.products.filter(product=>product.
+    this.products = this.allProducts.filter(product=>product.
       title.toLocaleLowerCase().includes(value.toLocaleLowerCase()));
   }
 }
