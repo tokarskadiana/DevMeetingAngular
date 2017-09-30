@@ -9,6 +9,45 @@ import {Title} from "@angular/platform-browser";
 })
 
 export class AppComponent implements OnInit {
+  staticProducts:Product[]=[
+    {
+      title: "Unicorn",
+      price: 12000,
+      imgUrl: "http://i163.photobucket.com/albums/t306/shakesville/unicorncode.jpg",
+      description: "Rainbow unicorn"
+    },
+    {
+      title: "Rainbow Unicorn",
+      price: 167777,
+      imgUrl: "http://www.unicornsrule.com/wp-content/uploads/rainbows-unicorns.jpg",
+      description: "classical unicorn"
+    },
+    {
+      title: "Dark Unicorn",
+      price: 223989,
+      imgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh_R41Z8M8GJw5qq4tESMBvK8GD_115EgmGExlHq67TiuZdukMsg",
+      description: "evel unicorn"
+    },
+    {
+      title: "Unicorn",
+      price: 12000,
+      imgUrl: "http://i163.photobucket.com/albums/t306/shakesville/unicorncode.jpg",
+      description: "Rainbow unicorn"
+    },
+    {
+      title: "Rainbow Unicorn",
+      price: 167777,
+      imgUrl: "http://www.unicornsrule.com/wp-content/uploads/rainbows-unicorns.jpg",
+      description: "classical unicorn"
+    },
+    {
+      title: "Dark Unicorn",
+      price: 223989,
+      imgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh_R41Z8M8GJw5qq4tESMBvK8GD_115EgmGExlHq67TiuZdukMsg",
+      description: "evel unicorn"
+    }
+
+  ];
   public constructor(private titleService: Title) {
   }
 
@@ -18,52 +57,20 @@ export class AppComponent implements OnInit {
 
   title = 'Rainbow Market';
   products:Product[];
+  filteredProducts:Product[];
   basket:Product[]=[];  
   ngOnInit() {
     this.setTitle( 'Rainbow Market' );
-    this.products = [
-      {
-        title: "Unicorn",
-        price: 12000,
-        imgUrl: "http://i163.photobucket.com/albums/t306/shakesville/unicorncode.jpg",
-        description: "Rainbow unicorn"
-      },
-      {
-        title: "Rainbow Unicorn",
-        price: 167777,
-        imgUrl: "http://www.unicornsrule.com/wp-content/uploads/rainbows-unicorns.jpg",
-        description: "classical unicorn"
-      },
-      {
-        title: "Dark Unicorn",
-        price: 223989,
-        imgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh_R41Z8M8GJw5qq4tESMBvK8GD_115EgmGExlHq67TiuZdukMsg",
-        description: "evel unicorn"
-      },
-      {
-        title: "Unicorn",
-        price: 12000,
-        imgUrl: "http://i163.photobucket.com/albums/t306/shakesville/unicorncode.jpg",
-        description: "Rainbow unicorn"
-      },
-      {
-        title: "Rainbow Unicorn",
-        price: 167777,
-        imgUrl: "http://www.unicornsrule.com/wp-content/uploads/rainbows-unicorns.jpg",
-        description: "classical unicorn"
-      },
-      {
-        title: "Dark Unicorn",
-        price: 223989,
-        imgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh_R41Z8M8GJw5qq4tESMBvK8GD_115EgmGExlHq67TiuZdukMsg",
-        description: "evel unicorn"
-      }
-
-    ];
+    this.products = this.staticProducts;
   }
 
   onAddProductToBasket(product){
     this.basket.push(product);
     console.log(this.basket)
+  }
+
+  filterProduct(value:string){
+    this.products = this.staticProducts.filter(product=>product.
+      title.toLocaleLowerCase().includes(value.toLocaleLowerCase()));
   }
 }

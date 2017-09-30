@@ -6,6 +6,7 @@
 </div>
 <div class="row">
   <div class="col-md-9">
+<input #inp (input)="filterProduct(inp.value)" type="text">
     <app-product-list [products]="products"
                       class="row"
                       (addToBasket) ="onAddProductToBasket($event)"></app-product-list>
@@ -16,5 +17,3 @@
     </div>
   </div>
 </div>
-
-
