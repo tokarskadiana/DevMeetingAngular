@@ -4,6 +4,6 @@
   <div class="card-block">
     <h4 class="card-title">{{product.title}} | {{product.price}}</h4>
     <p class="card-text">{{product.description}}</p>
-    <a href="#" class="btn btn-primary">Add to Basket</a>
+    <button (click)="addProductToBasket(product)" class="btn btn-primary">Add to Basket</button>
   </div>
 </div>

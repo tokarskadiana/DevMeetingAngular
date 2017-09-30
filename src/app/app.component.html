@@ -4,6 +4,15 @@
     Welcome to {{title}}!
   </h1>
 </div>
-    <app-product-list [products]="products" class="row"></app-product-list>    
-
+<div class="col-md-9">
+    <app-product-list [products]="products"
+    class="row"
+    (addToBasket) ="onAddProductToBasket($event)"></app-product-list>            
+</div> 
+<div class="col-md-3">
+  <div *ngFor="let item of basket">
+      <p>{{item.title}} - {{item.price}}</p>      
+  </div>
+</div>
+    
 

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Product } from "../product";
 @Component({
   selector: 'app-product-list',
@@ -10,4 +10,10 @@ export class ProductListComponent {
   @Input()
   products: Product[];
 
+  @Output()
+  addToBasket: EventEmitter<Product> = new EventEmitter();
+
+  onAddProductToBasket(product: Product) {
+    this.addToBasket.emit(product);
+  }
 }

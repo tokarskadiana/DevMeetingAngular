@@ -1,5 +1,6 @@
 <div *ngFor="let product of products">
   <app-product
   [product]="product"
+  (addToBasket) ="onAddProductToBasket($event)"
   ></app-product>
 </div>
