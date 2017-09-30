@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { ProductComponent } from './product/product.component';
 import { ProductListComponent } from './product-list/product-list.component';
+import {InMemoryProductRepository, ProductRepositoryToken} from "./ProductRepository";
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ProductListComponent } from './product-list/product-list.component';
     BrowserModule
   ],
   providers: [
-    Title
+    Title,
+    {provide: ProductRepositoryToken, useClass: InMemoryProductRepository}
   ],
   bootstrap: [AppComponent]
 })

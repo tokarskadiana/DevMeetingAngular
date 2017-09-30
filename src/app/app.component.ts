@@ -1,6 +1,7 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Inject, OnInit} from '@angular/core';
 import {Product} from "./product";
 import {Title} from "@angular/platform-browser";
+import {ProductRepository, ProductRepositoryToken} from "./ProductRepository";
 
 @Component({
   selector: 'app-root',
@@ -9,59 +10,22 @@ import {Title} from "@angular/platform-browser";
 })
 
 export class AppComponent implements OnInit {
-  staticProducts:Product[]=[
-    {
-      title: "Unicorn",
-      price: 12000,
-      imgUrl: "http://i163.photobucket.com/albums/t306/shakesville/unicorncode.jpg",
-      description: "Rainbow unicorn"
-    },
-    {
-      title: "Rainbow Unicorn",
-      price: 167777,
-      imgUrl: "http://www.unicornsrule.com/wp-content/uploads/rainbows-unicorns.jpg",
-      description: "classical unicorn"
-    },
-    {
-      title: "Dark Unicorn",
-      price: 223989,
-      imgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh_R41Z8M8GJw5qq4tESMBvK8GD_115EgmGExlHq67TiuZdukMsg",
-      description: "evel unicorn"
-    },
-    {
-      title: "Unicorn",
-      price: 12000,
-      imgUrl: "http://i163.photobucket.com/albums/t306/shakesville/unicorncode.jpg",
-      description: "Rainbow unicorn"
-    },
-    {
-      title: "Rainbow Unicorn",
-      price: 167777,
-      imgUrl: "http://www.unicornsrule.com/wp-content/uploads/rainbows-unicorns.jpg",
-      description: "classical unicorn"
-    },
-    {
-      title: "Dark Unicorn",
-      price: 223989,
-      imgUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQh_R41Z8M8GJw5qq4tESMBvK8GD_115EgmGExlHq67TiuZdukMsg",
-      description: "evel unicorn"
-    }
 
-  ];
-  public constructor(private titleService: Title) {
+  products:Product[];
+
+  public constructor(private titleService: Title,
+                     @Inject(ProductRepositoryToken) productRepository: ProductRepository) {
+    this.products = productRepository.getProducts();
   }
 
   public setTitle(newTitle: string) {
     this.titleService.setTitle(newTitle);
   }
-
   title = 'Rainbow Market';
-  products:Product[];
   filteredProducts:Product[];
-  basket:Product[]=[];  
+  basket:Product[]=[];
   ngOnInit() {
     this.setTitle( 'Rainbow Market' );
-    this.products = this.staticProducts;
   }
 
   onAddProductToBasket(product){
@@ -70,7 +34,7 @@ export class AppComponent implements OnInit {
   }
 
   filterProduct(value:string){
-    this.products = this.staticProducts.filter(product=>product.
+    this.products = this.products.filter(product=>product.
       title.toLocaleLowerCase().includes(value.toLocaleLowerCase()));
   }
 }
