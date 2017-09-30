@@ -4,6 +4,7 @@
     Welcome to {{title}}!
   </h1>
 </div>
+<input #inp (input)="filterProduct(inp.value)" type="text">
 <div class="col-md-9">
     <app-product-list [products]="products"
     class="row"
